@@ -39,7 +39,7 @@ function deleteFiles() {
     if (err) throw err;
 
     for (const file of files) {
-      fs.unlink(__dirname + '\\public\\uploads\\' + file, (err) => {
+      fs.unlink(__dirname + '/public/uploads/' + file, (err) => {
         if (err) throw err;
       });
     }
