@@ -26,11 +26,11 @@
       <section class="portfolio-block contact">
         <div class="container">
           <div class="heading">
-            <h2>Coma Separated Values</h2>
+            <h2>CSV Manipulator</h2>
           </div>
           <form action="/parser" method="post" enctype="multipart/form-data">
             <div class="mb-3">
-              <input class="form-control" type="file" accept=".csv" id="input_file" onchange="enableSubmitButton()" name="csv_file" />
+              <input class="form-control" type="file" accept=".csv" id="input_file" onchange="enableSubmitButton()" name="csv_file" multiple/>
             </div>
             <div class="mb-3">
               <input class="btn btn-primary btn-lg d-block w-100" type="submit" id="btn_upload" value="Upload CSV" disabled/>

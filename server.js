@@ -4,8 +4,10 @@ const csv = require('csvtojson');
 const { parse } = require('json2csv');
 const fs = require('fs');
 
+const uploadConfig = [{ name: 'csv_file', maxCount: 3 }];
 var bodyParser = require('body-parser');
 var storage = multer.memoryStorage();
+
 var upload = multer({ storage: storage });
 
 const app = express();
@@ -19,17 +21,30 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
-app.post('/parser', upload.single('csv_file'), async (req, res) => {
-  fs.unlink('output.csv', (err) =>
-    console.log(err ? 'Initialization..' : 'File deleted!')
-  );
+app.post('/parser', upload.fields(uploadConfig), async (req, res) => {
+  deleteFiles();
 
-  const csv2json = await csv().fromString(req.file.buffer.toString());
+  var csv2jsonList = [];
+  for (var file of req.files.csv_file) {
+    csv2jsonList.push(await csv().fromString(file.buffer.toString()));
+  }
 
-  writeFile(csv2json, res);
+  writeFile(csv2jsonList.flat(), res);
 });
 
 app.listen(process.env.PORT || 3000);
+
+function deleteFiles() {
+  fs.readdir('public/uploads', (err, files) => {
+    if (err) throw err;
+
+    for (const file of files) {
+      fs.unlink(__dirname + '\\public\\uploads\\' + file, (err) => {
+        if (err) throw err;
+      });
+    }
+  });
+}
 
 function writeFile(json, res) {
   try {
