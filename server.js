@@ -29,7 +29,7 @@ app.post('/parser', upload.single('csv_file'), async (req, res) => {
   writeFile(csv2json, res);
 });
 
-app.listen(process.env.PORT, 3000);
+app.listen(process.env.PORT || 3000);
 
 function writeFile(json, res) {
   try {
