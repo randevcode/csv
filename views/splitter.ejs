@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>Senso</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/css/pikaday.min.css" />
+  </head>
+
+  <body>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top bg-white portfolio-navbar gradient">
+      <div class="container"><a class="navbar-brand logo" href="#">Senso</a><button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div id="navbarNav" class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item"><a class="nav-link" href="/combiner">Combiner</a></li>
+              <li class="nav-item"><a class="nav-link" href="/splitter">Splitter</a></li>
+            </ul>
+        </div>
+      </div>
+    </nav>
+    <main class="page contact-page">
+      <section class="portfolio-block contact">
+        <div class="container">
+          <div class="heading">
+            <h2>CSV Splitter</h2>
+          </div>
+          <form action="/split" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+              <input class="form-control" type="number" min="1" value="1" name="number_files"/>
+            </div>
+            <div class="mb-3">
+              <input class="form-control" type="file" accept=".csv" id="input_file" onchange="enableSubmitButton()" name="csv_file"/>
+            </div>
+            <div class="mb-3">
+              <input class="btn btn-primary btn-lg d-block w-100" type="submit" id="btn_upload" value="Upload CSV" disabled/>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+    <script>
+      function enableSubmitButton() {
+        document.getElementById('btn_upload').disabled = false;
+      }
+
+      function clearInput() {
+        document.getElementById("input_file").value = '';
+      }
+    </script>
+    <script src="server/index.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pikaday/1.6.1/pikaday.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+  </body>
+</html>
