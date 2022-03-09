@@ -124,6 +124,9 @@ function deleteFiles() {
     if (err) console.log(err);
 
     for (const file of files) {
+      if (file == 'temp.txt') {
+        return;
+      }
       fs.unlink(__dirname + '/public/uploads/' + file, (err) => {
         if (err) console.log(err);
       });
