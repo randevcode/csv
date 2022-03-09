@@ -121,11 +121,11 @@ function split(arr, parts) {
 
 function deleteFiles() {
   fs.readdir('public/uploads', (err, files) => {
-    if (err) throw err;
+    if (err) console.log(err);
 
     for (const file of files) {
       fs.unlink(__dirname + '/public/uploads/' + file, (err) => {
-        if (err) throw err;
+        if (err) console.log(err);
       });
     }
   });
